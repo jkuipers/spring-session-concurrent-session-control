@@ -63,13 +63,11 @@ public class SpringSessionBackedSessionRegistry implements SessionRegistry {
         return null;
     }
 
+    /**
+     * This is a no-op, as we don't administer sessions ourselves.
+     */
     @Override
     public void refreshLastRequest(String sessionId) {
-        ExpiringSession session = sessionRepository.getSession(sessionId);
-        if (session != null) {
-            session.setLastAccessedTime(System.currentTimeMillis());
-            sessionRepository.save(session);
-        }
     }
 
     /**
