@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+<head>
+    <title>Concurrent Session demo</title>
+</head>
+<body>
+
+<h1>Concurrent Session demo</h1>
+<p>
+    You're logged in as '<span sec:authentication="name">Name goes here</span>' with
+    <span th:text="${sessions.size()}">1</span> session(s) (current session is highlighted):
+    <ul>
+        <li th:each="session: ${sessions}"
+            th:text="${session.id + ', last accessed: ' + #dates.format(new java.util.Date(session.lastAccessedTime), 'HH:mm:ss')}"
+            th:style="${session.id == currSessionId ? 'font-weight: bold' : ''}">session ID, last accessed: 14:04:12</li>
+    </ul>
+</p>
+<form th:action="@{/logout}" method="post">
+    <button type="submit">Log out</button>
+</form>
+
+</body>
+</html>
