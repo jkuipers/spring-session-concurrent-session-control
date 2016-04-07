@@ -16,7 +16,7 @@ import static org.springframework.session.FindByIndexNameSessionRepository.PRINC
  * Ensures that calling {@link #expireNow()} propagates to Spring Session,
  * since this session information contains only derived data and is not the authoritative source.
  */
-public class SpringSessionBackedSessionInformation extends SessionInformation {
+class SpringSessionBackedSessionInformation extends SessionInformation {
 
     /**
      * Tries to determine the principal's name from the given Session.

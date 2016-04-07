@@ -55,6 +55,7 @@ public class App extends WebSecurityConfigurerAdapter {
         String listSessions(Principal principal, HttpSession session, Model model) {
             Collection<? extends ExpiringSession> userSessions = sessions.findByIndexNameAndIndexValue(PRINCIPAL_NAME_INDEX_NAME, principal.getName()).values();
             model.addAttribute("sessions", userSessions);
+            // this gives us the correct session ID, as the HttpSession is backed by Spring Session:
             model.addAttribute("currSessionId", session.getId());
             return "index";
         }

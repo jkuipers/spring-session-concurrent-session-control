@@ -30,11 +30,11 @@ import static org.springframework.session.FindByIndexNameSessionRepository.PRINC
 @Component
 public class SpringSessionBackedSessionRegistry implements SessionRegistry {
 
-    private FindByIndexNameSessionRepository<ExpiringSession> sessionRepository;
+    private FindByIndexNameSessionRepository<? extends ExpiringSession> sessionRepository;
 
     @SuppressWarnings("SpringJavaAutowiringInspection")
     @Autowired
-    public SpringSessionBackedSessionRegistry(FindByIndexNameSessionRepository<ExpiringSession> sessionRepository) {
+    public SpringSessionBackedSessionRegistry(FindByIndexNameSessionRepository<? extends ExpiringSession> sessionRepository) {
         this.sessionRepository = sessionRepository;
     }
 
